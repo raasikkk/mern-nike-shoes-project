@@ -2,6 +2,10 @@
 
 This repository contains a fullstack application with an Express backend and a React frontend. The server handles API requests, while the client provides a dynamic user interface.
 
+## Collaborators
+
+- SashaPraskov (https://github.com/SashaPraskov)
+
 ## Technologies
 
 - **Backend**: 
@@ -24,5 +28,5 @@ Make sure you have the following installed:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/F1awless77/express-react-starter.git
+cd "express-react-starter"
