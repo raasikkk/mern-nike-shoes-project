@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
-import { UserController } from "./controllers/imports.js";
+import authRoutes from './routes/auth.js'
 
 dotenv.config();
 
@@ -11,6 +11,7 @@ const app = express();
 app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
+// Connecting to MongoDB database
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URL);
@@ -20,9 +21,10 @@ const connect = async () => {
   }
 };
 
-app.post('/auth/register', UserController.register)
-app.post('/auth/login', UserController.login)
+// Routes
+app.use('/', authRoutes); // Auth Routes
 
+// Starting the server
 app.listen(PORT, () => {
   connect();
   console.log(`Server is running on port ${PORT}`);

@@ -20,7 +20,7 @@ export const register = async (req, res) => {
     });
 
     // Saving the User to the database.
-    const user = await newUseer.save();
+    const user = await newUser.save();
 
     // Generating JSON Web Token
     const token = jwt.sign(
@@ -64,7 +64,7 @@ export const login = async (req, res) => {
 
     // Generating JSON Web Token
     const token = jwt.sign(
-        { _id: user._id,},
+        { _id: user._id, role: user.role },
         process.env.JWT_SECRET,
         { expiresIn: "30d" }
     );
