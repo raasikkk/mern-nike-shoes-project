@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 import authRoutes from './routes/auth.js'
+import uploadRoutes from './routes/uploadRoutes.js'
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ const connect = async () => {
 
 // Routes
 app.use('/', authRoutes); // Auth Routes
+app.use('/', uploadRoutes)
 
 // Starting the server
 app.listen(PORT, () => {
