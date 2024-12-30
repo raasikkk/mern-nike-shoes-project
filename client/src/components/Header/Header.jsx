@@ -18,7 +18,7 @@ const Header = () => {
         <div className={styles["navbar-wrapper"]}>
           <ul>
             <li>
-              <Link to="/">Products</Link>
+              <Link to="/catalog">Products</Link>
             </li>
             <li>
               <Link to="/">Pricing</Link>
@@ -34,18 +34,22 @@ const Header = () => {
 
         <div className={styles["action-wrapper"]}>
           <button className={styles.action}>
-            <img
-              className={styles["cart-icon"]}
-              src="/cart-icon.svg"
-              alt="Account"
-            ></img>
+            <Link to="/">
+              <img
+                className={styles["cart-icon"]}
+                src="/cart-icon.svg"
+                alt="Account"
+              ></img>
+            </Link>
           </button>
           <button className={styles.action}>
-            <img
-              className={styles["account-icon"]}
-              src="/account-icon.svg"
-              alt="Cart"
-            ></img>
+            <Link>
+              <img
+                className={styles["account-icon"]}
+                src="/account-icon.svg"
+                alt="Cart"
+              ></img>
+            </Link>
           </button>
         </div>
       </div>
