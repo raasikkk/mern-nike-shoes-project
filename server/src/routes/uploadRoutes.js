@@ -45,10 +45,10 @@ router.post(
     console.log("Uploaded file:", req.file);
 
     try {
-      const { name, price, gender } = req.body;
+      const { name, price, gender, brand, sportsAndActivities, collections, shoesHeight, closureType, width } = req.body;
       const imageUrl = req.file.path;
 
-      const newItem = new Item({ name, price, gender, imageUrl });
+      const newItem = new Item({ name, price, gender, brand, sportsAndActivities, collections, shoesHeight, closureType, width, imageUrl });
       await newItem.save();
 
       res.status(201).json({ message: "Item uploaded successfully!" });

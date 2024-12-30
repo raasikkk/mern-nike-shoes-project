@@ -18,6 +18,30 @@ const ItemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  brand: {
+    type: String,
+    required: true,
+  },
+  sportsAndActivities: {
+    type: String,
+    required: true,
+  },
+  collections: {
+      type: String,
+      required: true,
+  },
+  shoesHeight: {
+    type: String,
+    required: true,
+  },
+  closureType: {
+    type: String,
+    required: true,
+  },
+  width: {
+    type: String,
+    required: true,
+  },
 });
 
 export default mongoose.model("Item", ItemSchema);
