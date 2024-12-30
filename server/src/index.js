@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 import authRoutes from './routes/auth.js'
 import uploadRoutes from './routes/uploadRoutes.js'
+import cartRoutes from './routes/cartRoutes.js'
 
 dotenv.config();
 
@@ -24,7 +25,8 @@ const connect = async () => {
 
 // Routes
 app.use('/', authRoutes); // Auth Routes
-app.use('/', uploadRoutes)
+app.use('/', uploadRoutes) // Upload Routes
+app.use('/', cartRoutes) // Cart Routes
 
 // Starting the server
 app.listen(PORT, () => {
