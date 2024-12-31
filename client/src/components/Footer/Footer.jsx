@@ -6,37 +6,37 @@ const Footer = () => {
     <footer>
       <div className="">
         <div className="top-footer">
-          <div className="interactive-top-footer flex">
+          <div className="interactive-top-footer flex font-medium">
             <div className="column-footer flex flex-col">
               <Link to="/" className="title-column-footer">
                 About
               </Link>
-              <Link to="/">About Us</Link>
-              <Link to="/">Features</Link>
-              <Link to="/">News & Blog</Link>
+              <Link to="/" className="hyperlink-column-footer">About Us</Link>
+              <Link to="/" className="hyperlink-column-footer">Features</Link>
+              <Link to="/" className="hyperlink-column-footer">News & Blog</Link>
             </div>
 
             <div className="column-footer flex flex-col">
               <Link to="/" className="title-column-footer">
                 Connect
               </Link>
-              <Link to="/">LinkedIn</Link>
-              <Link to="/">Facebook</Link>
-              <Link to="/">Twitter</Link>
-              <Link to="/">Instagram</Link>
+              <Link to="/" className="hyperlink-column-footer">LinkedIn</Link>
+              <Link to="/" className="hyperlink-column-footer">Facebook</Link>
+              <Link to="/" className="hyperlink-column-footer">Twitter</Link>
+              <Link to="/" className="hyperlink-column-footer">Instagram</Link>
             </div>
 
             <div className="column-footer flex flex-col">
               <Link to="/" className="title-column-footer">
                 Support
               </Link>
-              <Link to="/">FAQs</Link>
-              <Link to="/">Support Center</Link>
-              <Link to="/">Contact Us</Link>
+              <Link to="/" className="hyperlink-column-footer">FAQs</Link>
+              <Link to="/" className="hyperlink-column-footer">Support Center</Link>
+              <Link to="/" className="hyperlink-column-footer">Contact Us</Link>
             </div>
           </div>
 
-          <div className="logo-container">
+          <div className="logo-container flex justify-center">
             <img className="logo" src="/nike-logo-001.svg" alt="Logo"></img>
           </div>
         </div>

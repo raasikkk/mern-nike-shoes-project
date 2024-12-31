@@ -1,18 +1,24 @@
 body {
+  font-family: 'Poppins', sans-serif;
   .bot-footer {
     height: 6vh;
     border-top: 1px solid #afafaf;
+    color: #747474;
+    font-size: 1.3vh;
   }
 
   .top-footer {
     display: flex;
   }
+  
+  .title-column-footer {
+    margin-bottom: 3vh;
+  }
 
   @media (min-width: 360px) {
     .top-footer {
-      height: 82vh;
       flex-direction: column-reverse;
-      padding: 0;
+      padding: 0 0 5vh 0;
       justify-content: flex-end;
     }
 
@@ -23,10 +29,21 @@ body {
 
     .interactive-top-footer {
       flex-direction: column;
+      gap: 5vh;
     }
 
     .column-footer {
       align-items: center;
+
+      .hyperlink-column-footer {
+        margin-bottom: 2vh;
+        font-size: 1.5vh;
+      }
+    }
+
+    .title-column-footer {
+      font-size: 1.25rem;
+
     }
   }
 
@@ -47,11 +64,19 @@ body {
 
     .column-footer {
       align-items: baseline;
+
+      .hyperlink-column-footer {
+        font-size: 2vh;
+      }
     }
     
     .logo {
         height: 22vh;
         width: auto;
+    }
+
+    .title-column-footer {
+      font-size: 3vh;
     }
   }
 }
