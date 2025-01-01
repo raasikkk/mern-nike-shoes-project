@@ -7,7 +7,6 @@
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 0 7vw;
   justify-content: space-between;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
@@ -35,7 +34,7 @@
       list-style: none;
       font-size: 2vh;
       font-family: "Poppins", serif;
-      font-weight: 500;
+      font-weight: 400;
 
       a {
         text-decoration: underline 1px solid white;
@@ -51,6 +50,8 @@
   }
 
   @media (min-width: 360px) {
+    padding: 0 2.5vw;
+
     .menu-icon {
       display: block;
     }
@@ -60,7 +61,7 @@
     }
 
     .cart-icon, .account-icon {
-      margin-right: 4vw;
+      margin-right: 2.3vw;
     }
 
     .navbar {
@@ -69,16 +70,18 @@
   }
 
   @media (min-width: 768px) {
+    padding: 0 7vw;
+
     .menu-icon {
       display: none;
     }
 
-    .cart-icon, .account-icon, .menu-icon {
-      height: 4vh;
+    .cart-icon, .account-icon {
+      height: 4.6vh;
     }
 
     .cart-icon, .account-icon {
-      margin-right: 2vw;
+      margin-right: 2.6vw;
     }
 
     .navbar {
