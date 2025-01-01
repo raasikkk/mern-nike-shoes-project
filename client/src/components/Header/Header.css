@@ -39,11 +39,11 @@
       a {
         text-decoration: underline 1px solid white;
         color: #000;
-        text-underline-offset: 0.5rem;
+        text-underline-offset: 0.3rem;
       }
 
       a:hover {
-        text-decoration: underline 2px solid black;
+        text-decoration: underline 1px solid black;
         transition: 500ms ease;
       }
     }
