@@ -4,7 +4,7 @@ body {
     height: 6vh;
     border-top: 1px solid #afafaf;
     color: #747474;
-    font-size: 1.3vh;
+    font-size: 1.5vh;
   }
 
   .top-footer {
@@ -47,7 +47,7 @@ body {
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     .top-footer {
       height: 44vh;
       flex-direction: row;
