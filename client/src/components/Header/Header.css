@@ -3,7 +3,6 @@
 }
 
 .header {
-  height: 10vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -21,10 +20,6 @@
     }
   }
 
-  .logo {
-    height: 10vh;
-  }
-
   .navbar-wrapper ul {
     display: flex;
     align-items: center;
@@ -32,7 +27,7 @@
 
     li {
       list-style: none;
-      font-size: 2vh;
+      font-size: 2.2vh;
       font-family: "Poppins", serif;
       font-weight: 400;
 
@@ -50,18 +45,23 @@
   }
 
   @media (min-width: 360px) {
+    height: 8vh;
     padding: 0 2.5vw;
+
+    .logo {
+      height: 8vh;
+    }
 
     .menu-icon {
       display: block;
     }
 
     .cart-icon, .account-icon, .menu-icon {
-      height: 3.5vh;
+      height: 3vh;
     }
 
     .cart-icon, .account-icon {
-      margin-right: 2.3vw;
+      margin-right: 2.7vw;
     }
 
     .navbar {
@@ -69,7 +69,8 @@
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
+    height: 12vh;
     padding: 0 7vw;
 
     .menu-icon {
@@ -82,6 +83,10 @@
 
     .cart-icon, .account-icon {
       margin-right: 2.6vw;
+    }
+
+    .logo {
+      height: 12vh;
     }
 
     .navbar {

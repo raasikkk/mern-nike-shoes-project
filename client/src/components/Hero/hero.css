@@ -1,0 +1,133 @@
+body {
+  .hero-container {
+    display: flex;
+    justify-content: space-between;
+
+    .hero-button {
+      color: #fff;
+    }
+
+    h1 {
+      font-family: "Montserrat", serif;
+    }
+  }
+
+  @media (min-width: 360px) {
+    .hero-container {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2vh;
+        
+        h1 {
+            font-size: 3.125vh;
+            font-weight: 700;
+            margin-top: 1vh;
+        }
+
+        p {
+            font-size: 1.2vh;
+            width: 45vw;
+            text-align: center;
+            margin-top: 1vh;
+        }
+
+        .hero-button {
+            font-size: 1.1vh;
+            padding: 1vh 2.35vw;
+            background-color: #00bfff;
+            margin-top: 1vh;
+            border-radius: 1vh;
+        }
+    }
+
+    .hero-image {
+
+      img {
+        height: 31.25vh;
+        width: auto;
+      }
+
+      .hero-image-title {
+        display: none;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-container {
+      height: 88vh;
+      padding: 0 7vw;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .hero-content {
+      margin-top: 11.7vh;
+      margin-bottom: 0;
+      align-items: flex-start;
+
+      h1 {
+        font-size: 8.88vh;
+        font-weight: 700;
+        line-height: 11.1vh;
+        width: 30vw;
+        margin: 0;
+      }
+
+      p {
+        font-size: 2.22vh;
+        width: 34.375vw;
+        margin-top: 2.77vh;
+        text-align: left;
+      }
+
+      .hero-button {
+        border-radius: 2vh;
+        font-size: 2.22vh;
+        padding: 2vh 2vw;
+        background-color: #00bfff;
+        margin-top: 3.25vh;
+      }
+    }
+
+    .hero-image {
+      margin-top: 7vh;
+      position: relative;
+
+      img {
+        height: 57.5vh;
+        width: auto;
+      }
+
+      .hero-image-title {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 2.22vh;
+        text-align: center;
+        padding: 2vh 2vw;
+        background-color: #00bfff;
+        border-radius: 2vh;
+        color: #fff;
+        display: inline-block;
+
+        &.title-shoe {
+          position: absolute;
+          top: 0;
+          left: 6.6vw;
+        }
+
+        &.title-discount {
+          position: absolute;
+          bottom: 3.88vh;
+          right: 6vw;
+        }
+      }
+    }
+  }
+}

@@ -1,13 +1,21 @@
 import "./Header.css";
 import { useState } from "react";
 import { Link } from "react-router";
+import { useEffect } from "react";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    document.body.style.overflow = !menuOpen ? 'hidden' : 'visible';
   };
+
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, []);
 
   return (
     <header>
@@ -63,6 +71,7 @@ const Header = () => {
             <img src="/menu-icon.svg" alt="Menu" className="md:hidden menu-icon"></img>
           </button>
         </div>
+
         {/* Full-Screen Links */}
         <div
           className={`fixed top-0 left-0 w-full h-full bg-white bg-opacity-100 z-50 flex flex-col justify-center items-center text-black space-y-10 text-3xl transition-transform duration-500 ${
