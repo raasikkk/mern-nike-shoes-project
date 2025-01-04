@@ -1,5 +1,6 @@
 body {
   .service-features {
+    font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
