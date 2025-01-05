@@ -5,7 +5,7 @@ const Dedication = () => {
     <section>
       <div className="dedication-container">
         <div className="dedication-img">
-          <img src="" alt="" />
+          <img src="/dedication_img.png" alt="nike_shoe" />
         </div>
 
         <div className="dedication-content">
