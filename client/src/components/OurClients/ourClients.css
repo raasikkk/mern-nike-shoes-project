@@ -1,0 +1,60 @@
+/* body {
+  @media (min-width: 360px) {
+    .clients-container {
+
+        .clients-title {
+            display: flex;
+            justify-content: center;
+            font-size: 3.33vh;
+            font-weight: 700;
+            margin-top: 1.95vh;
+        }
+
+        .clients-list {
+            display: flex;
+            justify-content: center;
+            margin-top: 3.2vh;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 8vh;
+
+            .clients-person {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+                margin-inline: 3vw;
+                margin-bottom: 3vh;
+
+                img {
+                    height: 19.5vh;
+                    width: auto !important;
+                }
+
+                h2 {
+                    font-size: 2vh;
+                    font-weight: 500;
+                    margin-top: 0.5vh;
+                }
+
+                p {
+                    max-width: 32vw;
+                    margin-top: 0.5vh;
+                    font-size: 1.6vh;
+                }
+            }
+        }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .clients-container {
+
+    }
+  }
+} */
+
+.card-img {
+  @apply h-[19.5vh] w-auto mx-auto;
+}

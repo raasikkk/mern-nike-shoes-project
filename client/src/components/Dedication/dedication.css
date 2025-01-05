@@ -77,7 +77,7 @@ body {
             button {
                 margin-top: 3.18vh;
                 font-size: 2.22vh;
-                border-radius: 2vh;
+                border-radius: 2nvh;
                 padding: 2vh 2vw;
             }
         }

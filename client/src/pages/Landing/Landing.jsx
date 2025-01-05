@@ -5,6 +5,7 @@ import Hero from "../../components/Hero/Hero.jsx";
 import ServiceFeatures from "../../components/ServiceFeatures/ServiceFeatures.jsx";
 import Collection from "../../components/Collection/Collection.jsx";
 import Dedication from "../../components/Dedication/Dedication.jsx";
+import OurClients from "../../components/OurClients/OurClients.jsx";
 
 const Landing = () => {
   return (
@@ -14,6 +15,7 @@ const Landing = () => {
       <ServiceFeatures />
       <Collection />
       <Dedication />
+      <OurClients />
       <Footer />
     </>
   );
