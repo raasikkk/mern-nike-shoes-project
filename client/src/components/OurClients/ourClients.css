@@ -56,5 +56,5 @@
 } */
 
 .card-img {
-  @apply h-[19.5vh] w-auto mx-auto;
+  @apply md:h-[29.3vh] w-auto mx-auto sm:h-[19.5vh];
 }
