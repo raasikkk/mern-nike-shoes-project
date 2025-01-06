@@ -11,7 +11,7 @@ const OurClients = () => {
         </div>
 
         {/* Clients list */}
-        <div className="clients-list mt-24 mb-40 flex justify-center items-center text-center flex-wrap gap-32">
+        <div className="clients-list mt-24 mb-40 flex justify-center items-center text-center flex-wrap gap-[4vw]">
           <div className="clients-person w-64">
             <img
               className="card-img"
@@ -22,7 +22,7 @@ const OurClients = () => {
             <p className="mt-2">“I don’t fall no more with them Nike shoes”</p>
           </div>
 
-          <div className="clients-person  w-64">
+          <div className="clients-person w-64">
             <img
               className="card-img"
               src="/daadult.png"
@@ -32,7 +32,7 @@ const OurClients = () => {
             <p className="mt-2">“Nike shoes are very good”</p>
           </div>
 
-          <div className="clients-person  w-64">
+          <div className="clients-person w-64">
             <img
               className="card-img"
               src="/kanye_east.png"
@@ -42,7 +42,7 @@ const OurClients = () => {
             <p className="mt-2">“I don’t like Yeezy i like Nike”</p>
           </div>
 
-          <div className="clients-person  w-64">
+          <div className="clients-person w-64">
             <img
               className="card-img"
               src="/finfinfin.png"
