@@ -49,52 +49,7 @@ const CatalogSidebar = () => {
 
   return (
     <section>
-      <div>
-        {/* Filter Button for Smaller Screens */}
-        <button
-          className="block md:hidden bg-gray-200 text-gray-700 rounded px-4 py-2 mb-4 focus:outline-none"
-          onClick={toggleFilter}
-        >
-          Filter
-        </button>
-
-        {/* Sidebar Container */}
-        <div
-          className={`w-64 bg-white shadow-md p-4 transition-transform duration-300 
-          ${filterOpen ? "block" : "hidden md:block"}`}
-        >
-          {Object.keys(sections).map((section) => (
-            <div key={section}>
-              <button
-                className="flex justify-between w-full text-left py-2 font-semibold text-gray-700 hover:text-gray-900 focus:outline-none"
-                onClick={() => toggleSidebar(section)}
-              >
-                {section}
-                <span>{openSections[section] ? "-" : "+"}</span>
-              </button>
-              {openSections[section] && (
-                <div className="pl-4">
-                  <ul>
-                    {sections[section].map((option) => (
-                      <li key={option} className="py-1 text-gray-600">
-                        <label>
-                          <input
-                            type="checkbox"
-                            checked={selectedOptions[section]?.includes(option) || false}
-                            onChange={() => handleOptionChange(section, option)}
-                            className="mr-2"
-                          />
-                          {option}
-                        </label>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+      
     </section>
   );
 };
