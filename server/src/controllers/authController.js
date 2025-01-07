@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 import UserModel from "../models/User.js";
+import Cart from "../models/Cart.js"
 
 export const register = async (req, res) => {
   // Getting Name, Password and Role of the User from the request.
@@ -22,6 +23,10 @@ export const register = async (req, res) => {
     // Saving the User to the database.
     const user = await newUser.save();
 
+    // Creating a cart for the new user
+    const newCart = new Cart({ user: user._id, items: [] });
+    await newCart.save();
+
     // Generating JSON Web Token
     const token = jwt.sign(
       { _id: user._id, role: user.role },
@@ -29,11 +34,12 @@ export const register = async (req, res) => {
       { expiresIn: "30d" }
     );
 
-    // Sending a response with user data and token to make sure everything worked properly
+    // Sending a response with user data and token to ensure everything worked properly
     res.status(201).json({
       message: "User registered successfully",
       userId: user._id,
       token,
+      cartId: newCart._id, // Optionally send the cart ID
     });
   } catch (error) {
     console.log(error);

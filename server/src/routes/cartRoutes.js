@@ -8,9 +8,25 @@ const router = express.Router();
 
 router.post("/carts", authenticateToken, async (req, res) => {
   const { userId } = req.body;
+
+  console.log("Request Body:", req.body);
+  console.log("Authenticated User ID:", req.user._id);
+
+  // Ensure the userId matches the authenticated user's ID
+  if (userId !== req.user._id) {
+    return res.status(403).json({ message: "Forbidden" });
+  }
+
   try {
+    const existingCart = await Cart.findOne({ user: userId });
+    if (existingCart) {
+      return res.status(400).json({ message: "A cart already exists for this user." });
+    }
+
     const newCart = new Cart({ user: userId, items: [] });
     await newCart.save();
+
+    res.status(201).json(newCart);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error creating Cart" });
@@ -39,7 +55,7 @@ router.post("/carts/:userId/items", authenticateToken, async (req, res) => {
   const { itemId, quantity } = req.body;
 
   try {
-    const cart = await Cart.findOne({ user: userId }).populate("items.itemId");
+    const cart = await Cart.findOne({ user: userId })
 
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });

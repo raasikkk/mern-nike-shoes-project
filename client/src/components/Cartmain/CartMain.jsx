@@ -1,8 +1,12 @@
 import "./cartMain.css";
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { useParams } from "react-router"
 
-const CartMain = () => {
+const CartMain = ({ cart }) => {
+  const { userId } = useParams();
   const [count, setCount] = useState(1);
   const [openPromoCode, setOpenPromoCode] = useState(false);
   const [isItemVisible, setIsItemVisible] = useState(true);
@@ -11,22 +15,51 @@ const CartMain = () => {
     setCount((prev) => prev + 1);
   };
 
-  const handleDelete = () => {
-    // Only target the cart-item div
-    const cartItem = document.querySelector(".cart-item");
-    if (cartItem) {
-      cartItem.style.transition = "opacity 0.3s ease-out";
-      cartItem.style.opacity = "0";
-
-      setTimeout(() => {
-        setIsItemVisible(false);
-      }, 300);
+  const deleteCartItem = async (itemId) => {
+    try {
+      const cartItem = document.querySelector(`[data-item-id="${itemId}"]`);
+      if (cartItem) {
+        cartItem.style.transition = "opacity 0.3s ease-out";
+        cartItem.style.opacity = "0";
+      }
+  
+      await new Promise(resolve => setTimeout(resolve, 300));
+  
+      const token = document.cookie
+        .split(';')
+        .find(item => item.trim().startsWith('token='));
+      const authToken = token ? token.split('=')[1] : null;
+  
+      if (!authToken) {
+        console.error("No authentication token found");
+        return;
+      }
+  
+      await axios.delete(`http://localhost:3000/carts/${userId}/items/${itemId}`, {
+        headers: {
+          'Authorization': `Bearer ${authToken}`,
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      setIsItemVisible(false);
+  
+    } catch (error) {
+      console.error("Error deleting item:", error.response?.data || error.message);
+      const cartItem = document.querySelector(`[data-item-id="${itemId}"]`);
+      if (cartItem) {
+        cartItem.style.opacity = "1";
+      }
     }
   };
 
   const orderClick = () => {
     alert("Successfully placed an order");
   };
+
+  if (!cart || !Array.isArray(cart.items) || cart.items.length === 0) {
+    return <div>Your cart is empty.</div>;
+  }
 
   return (
     <section>
@@ -48,55 +81,69 @@ const CartMain = () => {
           <div className="360:py-1 lg:py-0">
             {isItemVisible && (
               <div className="cart-item 360:my-5 lg:my-0 lg:mb-6">
-                <div className="item-content flex">
-                  <div>
-                    <img
-                      className="360:w-[30vw] lg:w-[12vw]"
-                      src="/nike_dunk_low_retro.png"
-                      alt="cart_item"
-                    />
-                  </div>
-                  <div className="ml-3">
-                    <h2 className="font-medium">Nike Dunk Low Retro</h2>
-                    <p className="font-medium text-sm text-gray-500">{`Men's Shoes`}</p>
-                    <p className="mt-1 text-sm text-gray-500">Lifestyle</p>
-                  </div>
-                  <div className="font-medium ml-auto">
-                    <h2>$115.00</h2>
-                  </div>
-                </div>
+                {cart.items.map((item, index) => (
+                  <div
+                    key={item._id}
+                    data-item-id={item._id}
+                    className="cart-item 360:my-5 lg:my-0 lg:mb-6"
+                  >
+                    <div className="item-content flex">
+                      <div>
+                        <img
+                          className="360:w-[30vw] lg:w-[12vw]"
+                          src={`http://localhost:3000/${item.itemId.imageUrl}`}
+                          alt="cart_item"
+                        />
+                      </div>
+                      <div className="ml-3">
+                        <h2 className="font-medium">{item.itemId.name}</h2>
+                        <p className="font-medium text-sm text-gray-500">{`Men's Shoes`}</p>
+                        <p className="mt-1 text-sm text-gray-500">Lifestyle</p>
+                      </div>
+                      <div className="font-medium ml-auto">
+                        <h2>${item.itemId.price}</h2>
+                      </div>
+                    </div>
 
-                <div className="action-button inline-flex gap-5 border border-gray-400 p-2 rounded-3xl mt-4">
-                  <div className="action-icon delete-button">
-                    <button onClick={handleDelete}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="24px"
-                        viewBox="0 -960 960 960"
-                        width="24px"
-                        fill="#000000"
-                      >
-                        <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
-                      </svg>
-                    </button>
+                    {/* Action buttons moved inside the map function */}
+                    <div className="action-button inline-flex gap-5 border border-gray-400 p-2 rounded-3xl mt-4">
+                      <div className="action-icon delete-button">
+                        <button onClick={() => deleteCartItem(item._id)}>
+                          {" "}
+                          {/* Added item._id parameter */}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 -960 960 960"
+                            width="24px"
+                            fill="#000000"
+                          >
+                            <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                          </svg>
+                        </button>
+                      </div>
+                      <div className="action-icon active-count">
+                        <span>{item.quantity}</span>{" "}
+                        {/* Changed count to item.quantity */}
+                      </div>
+                      <div className="action-icon add-button">
+                        <button onClick={() => handleIncrement(item._id)}>
+                          {" "}
+                          {/* Added item._id parameter */}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 -960 960 960"
+                            width="24px"
+                            fill="#000000"
+                          >
+                            <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <div className="action-icon active-count">
-                    <span>{count}</span>
-                  </div>
-                  <div className="action-icon add-button">
-                    <button onClick={handleIncrement}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="24px"
-                        viewBox="0 -960 960 960"
-                        width="24px"
-                        fill="#000000"
-                      >
-                        <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
+                ))}
               </div>
             )}
           </div>

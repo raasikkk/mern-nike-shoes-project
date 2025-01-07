@@ -1,11 +1,12 @@
 import "./Header.css";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -21,6 +22,40 @@ const Header = () => {
       document.body.classList.remove('no-scroll');
     };
   }, []);
+
+  const getToken = () => {
+    return document.cookie.split(';').find(item => item.trim().startsWith('token='));
+  };
+
+  const isAuthenticated = () => {
+    return !!getToken();
+  };
+
+  const handleLogout = () => {
+    // Clear the JWT cookie and reload the page (you might want to implement more sophisticated handling)
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'; // Example of clearing the cookie
+    window.location.reload(); // Reload the page or redirect as needed
+  };
+
+  const getUserIdFromToken = () => {
+    const token = getToken();
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1])); // Decode the token
+      return payload._id; // Extract user ID from the token
+    }
+    return null;
+  };
+
+  const handleCartClick = () => {
+    const userId = getUserIdFromToken();
+    if (isAuthenticated() && userId) {
+      // If authenticated, navigate to the cart with user ID
+      navigate(`/carts/${userId}`);
+    } else {
+      // If not authenticated, redirect to the login page
+      navigate('/login');
+    }
+  };
 
   return (
     <header>
@@ -52,7 +87,7 @@ const Header = () => {
         </div>
 
         <div className="action-wrapper">
-          <button className="action">
+          <button className="action"  onClick={handleCartClick}>
             <Link to="/cart">
               <img
                 className="cart-icon"
@@ -61,7 +96,7 @@ const Header = () => {
               ></img>
             </Link>
           </button>
-          <button className="action cart" onClick={toggleAccount}>
+          <button className="action" onClick={toggleAccount}>
               <img
                 className="account-icon"
                 src="/account-icon.svg"
@@ -75,15 +110,20 @@ const Header = () => {
           </button>
         </div>
 
-        <div className={`absolute bg-gray-50 lg:w-[10vw] lg:top-[12vh] lg:right-[7vw] p-4
+        <div className={`rounded-b-xl absolute bg-gray-100 lg:w-[10vw] lg:top-[12vh] lg:right-[7vw] p-4
         transition-all duration-200 ease-in-out origin-top overflow-hidden
           ${accountOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}
           `}>
-            <div className="flex flex-col items-start gap-3">
-              <button><Link to="/register">Register</Link></button>
-              <button><Link to="/login">Login</Link></button>
-            </div>
-          
+            <div>
+            {isAuthenticated() ? (
+              <button className="z-50" onClick={handleLogout}>Logout</button>
+            ) : (
+              <div className="flex flex-col items-start gap-3 z-50">
+                <button className="z-50"><Link to="/register">Register</Link></button>
+                <button className="z-50"><Link to="/login">Login</Link></button>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Full-Screen Links */}
