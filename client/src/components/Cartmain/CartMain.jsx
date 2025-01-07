@@ -1,5 +1,6 @@
 import "./cartMain.css";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const CartMain = () => {
   const [count, setCount] = useState(1);
@@ -29,7 +30,17 @@ const CartMain = () => {
 
   return (
     <section>
-      <div className="lg:flex lg:flex-row lg:justify-between gap-6">
+      <motion.div
+        className="lg:flex lg:flex-row lg:justify-between gap-6"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ margin: "-100px", once: true }}
+        transition={{
+          type: "spring",
+          stiffness: 50,
+          damping: 25,
+        }}
+      >
         <div className="w-full">
           <div className="360:text-center 360:py-4 360:border-b border-gray-500 lg:mb-6 lg:text-left lg:py-0 lg:border-0">
             <h1 className="font-medium 360:text-xl lg:text-2xl">Bag</h1>
@@ -168,7 +179,7 @@ const CartMain = () => {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

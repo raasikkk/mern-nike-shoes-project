@@ -1,9 +1,18 @@
 import "./ourClients.css/";
+import { motion } from "framer-motion";
 
 const OurClients = () => {
   return (
     <section>
-      <div className="clients-container">
+      <motion.div className="clients-container"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ margin: "-100px", once: true }}
+      transition={{
+        type: "spring",
+        stiffness: 50,
+        damping: 25,
+      }}>
         <div className="clients-title">
           <h1 className="text-center mt-10 lg:mt-0 text-4xl sm:text-4xl md:text-6xl font-semibold">
             What Our Clients Say
@@ -52,7 +61,7 @@ const OurClients = () => {
             <p className="mt-2">“Fin Fin Fin Fin Fin Fin Fin Fin Fin Fin”</p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

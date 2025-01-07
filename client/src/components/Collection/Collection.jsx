@@ -1,10 +1,19 @@
 import "./collection.css";
 import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const Collection = () => {
   return (
     <section>
-      <div className="section-collection">
+      <motion.div className="section-collection"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ margin: "-100px", once: true }}
+      transition={{
+        type: "spring",
+        stiffness: 50,
+        damping: 25,
+      }}>
         <div className="title-collection">
           <h1>Our Collection</h1>
         </div>
@@ -95,7 +104,7 @@ const Collection = () => {
             </button>
           </Link>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

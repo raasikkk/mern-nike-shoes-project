@@ -1,9 +1,18 @@
 import "./hero.css";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
     <section>
-      <div className="hero-container">
+      <motion.div className="hero-container"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ margin: "-100px", once: true }}
+      transition={{
+        type: "spring",
+        stiffness: 50,
+        damping: 25,
+      }}>
         <div className="hero-content">
           <h1>Find your dream pair</h1>
           <p>{`Find your dream sneakers and elevate your style with Nike's exclusive collections.`}</p>
@@ -14,7 +23,7 @@ const Hero = () => {
           <p className="hero-image-title title-shoe">NIKE SB DUNK</p>
           <p className="hero-image-title title-discount">30%<br></br>Discount</p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
