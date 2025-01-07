@@ -48,7 +48,7 @@ const Header = () => {
 
         <div className="action-wrapper">
           <button className="action">
-            <Link to="/">
+            <Link to="/cart">
               <img
                 className="cart-icon"
                 src="/cart-icon.svg"

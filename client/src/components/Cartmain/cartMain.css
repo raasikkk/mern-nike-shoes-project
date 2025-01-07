@@ -1,0 +1,7 @@
+h1 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.action-icon {
+    @apply flex justify-center items-center
+}
