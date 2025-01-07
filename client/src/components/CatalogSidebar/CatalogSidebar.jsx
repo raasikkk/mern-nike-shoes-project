@@ -60,7 +60,7 @@ const CatalogSidebar = () => {
       "Track & Field",
       "Running",
     ],
-    Collections: [
+    "Collections": [
       "Air Force ",
       "Nike Dunk",
       "Air Max",

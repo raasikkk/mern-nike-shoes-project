@@ -46,7 +46,7 @@ router.post(
 
     try {
       const { name, price, gender, brand, sportsAndActivities, collections, shoesHeight, closureType, width } = req.body;
-      const imageUrl = req.file.path;
+      const imageUrl = `uploads/${req.file.filename}`;
 
       const newItem = new Item({ name, price, gender, brand, sportsAndActivities, collections, shoesHeight, closureType, width, imageUrl });
       await newItem.save();

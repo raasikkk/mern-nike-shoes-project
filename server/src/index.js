@@ -2,6 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from 'cors'
+import path from 'path'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 import authRoutes from './routes/auth.js'
 import uploadRoutes from './routes/uploadRoutes.js'
@@ -11,6 +14,9 @@ import itemRoutes from './routes/getItems.js'
 dotenv.config();
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.use(express.json());
 app.use(cors())
@@ -28,10 +34,11 @@ const connect = async () => {
 };
 
 // Routes
-app.use('/', itemRoutes)
+app.use('/', itemRoutes) // Get Items Routes
 app.use('/', authRoutes); // Auth Routes
 app.use('/', uploadRoutes) // Upload Routes
 app.use('/', cartRoutes) // Cart Routes
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Starting the server
 app.listen(PORT, () => {
