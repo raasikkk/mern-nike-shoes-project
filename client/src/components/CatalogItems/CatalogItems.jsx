@@ -36,7 +36,7 @@ const CatalogItems = () => {
             damping: 25,
           }}
         >
-          <Link to={`/item/${item.id}`}>
+          <Link to={`/item/${item._id}`}>
             <div>
               <img
                 className="360:w-[49.5vw] lg:w-[19vw]"
@@ -46,9 +46,11 @@ const CatalogItems = () => {
             </div>
             <div className="mt-2 360:ml-2 lg:ml-0">
               <h2 className="text-base font-medium">{item.name}</h2>
-              <p className="text-sm text-gray-500">Shoes</p> {/* Assuming 'category' exists */}
-              <p className="text-sm text-gray-500 mt-1">{item.gender}</p> {/* Assuming 'gender' exists */}
-              <h2 className="text-base font-medium mt-1">${item.price}</h2> {/* Assuming 'price' exists */}
+              <p className="text-sm text-gray-500">Shoes</p>
+              <p className="text-sm text-gray-500 mt-1">
+                {item.gender === 'Male' ? "Men's" : item.gender === 'Female' ? "Women's": ""}
+              </p>
+              <h2 className="text-base font-medium mt-1">${item.price}</h2>
             </div>
           </Link>
         </motion.div>

@@ -5,10 +5,15 @@ import { useEffect } from "react";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
     document.body.style.overflow = !menuOpen ? 'hidden' : 'visible';
+  };
+
+  const toggleAccount = () => {
+    setAccountOpen(!accountOpen);
   };
 
   useEffect(() => {
@@ -56,20 +61,29 @@ const Header = () => {
               ></img>
             </Link>
           </button>
-          <button className="action cart">
-            <Link>
+          <button className="action cart" onClick={toggleAccount}>
               <img
                 className="account-icon"
                 src="/account-icon.svg"
                 alt="Cart"
               ></img>
-            </Link>
           </button>
 
           {/* Mobile Menu Icon */}
           <button className="md:hidden action" onClick={toggleMenu}>
             <img src="/menu-icon.svg" alt="Menu" className="md:hidden menu-icon"></img>
           </button>
+        </div>
+
+        <div className={`absolute bg-gray-50 lg:w-[10vw] lg:top-[12vh] lg:right-[7vw] p-4
+        transition-all duration-200 ease-in-out origin-top overflow-hidden
+          ${accountOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}
+          `}>
+            <div className="flex flex-col items-start gap-3">
+              <button><Link to="/register">Register</Link></button>
+              <button><Link to="/login">Login</Link></button>
+            </div>
+          
         </div>
 
         {/* Full-Screen Links */}
