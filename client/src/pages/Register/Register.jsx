@@ -1,38 +1,42 @@
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie"
+import { useNavigate } from "react-router"
 
 const Register = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Submitting:', { name, password });
+    setIsLoading(true);
 
     try {
-      // Registration request
-      await axios.post('http://localhost:3000/register', {
+      await axios.post('http://localhost:3000/api/register', {
         name,
         password,
       });
 
-      // Login request after successful registration
-      const response = await axios.post('http://localhost:3000/login', {
+      const response = await axios.post('http://localhost:3000/api/login', {
         name,
         password,
       });
 
-      // Retrieve and store the JWT token in cookies
       const jwtToken = response.data.token;
-      Cookies.set('token', jwtToken, { expires: 7 }); // Expires in 7 days
+      Cookies.set('token', jwtToken, { expires: 7 });
       console.log('Login successful, JWT Token stored in cookies:', jwtToken);
+      navigate('/')
     } catch (error) {
       if (error.response) {
         console.error('Error during registration or login:', error.response.data);
       } else {
         console.error('Error message:', error.message);
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -74,9 +78,10 @@ const Register = () => {
           </div>
           <button
             type="submit"
+            disabled={isLoading}
             className="w-full bg-black text-white p-2 rounded hover:bg-gray-800"
           >
-            Register
+            {isLoading ? "Creating the Account..." : "Register"}
           </button>
         </form>
       </div>

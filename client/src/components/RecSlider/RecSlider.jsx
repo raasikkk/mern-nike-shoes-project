@@ -99,7 +99,9 @@ const RecSlider = () => {
         damping: 25,
       }}
     >
-      <h2 className="text-2xl font-medium mb-4">You Might Also Like</h2>
+      <h2 className="text-2xl xl:text-5xl font-medium mb-4">
+        You Might Also Like
+      </h2>
 
       {/* Navigation Buttons */}
       <div className="flex gap-2 mb-4 justify-end">
@@ -109,7 +111,7 @@ const RecSlider = () => {
           aria-label="Previous"
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 xl:w-12 xl:h-12"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -129,7 +131,7 @@ const RecSlider = () => {
           aria-label="Next"
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 xl:w-12 xl:h-12"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -171,9 +173,9 @@ const RecSlider = () => {
                   className="w-full h-auto"
                 />
                 <div className="mt-4">
-                  <h3 className="text-lg font-medium">{product.name}</h3>
-                  <p className="text-gray-600">{product.category}</p>
-                  <p className="mt-2 font-medium">
+                  <h3 className="text-lg xl:text-3xl font-medium">{product.name}</h3>
+                  <p className="text-gray-600 xl:text-xl xl:mt-2">{product.category}</p>
+                  <p className="mt-2 font-medium xl:text-3xl">
                     ${product.price.toFixed(2)}
                   </p>
                 </div>

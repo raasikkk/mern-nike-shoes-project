@@ -34,10 +34,10 @@ const connect = async () => {
 };
 
 // Routes
-app.use('/', itemRoutes) // Get Items Routes
-app.use('/', authRoutes); // Auth Routes
-app.use('/', uploadRoutes) // Upload Routes
-app.use('/', cartRoutes) // Cart Routes
+app.use('/api', itemRoutes) // Get Items Routes
+app.use('/api', authRoutes); // Auth Routes
+app.use('/api', uploadRoutes) // Upload Routes
+app.use('/api', cartRoutes) // Cart Routes
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Starting the server

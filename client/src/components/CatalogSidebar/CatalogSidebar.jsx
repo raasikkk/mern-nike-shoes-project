@@ -60,7 +60,7 @@ const CatalogSidebar = () => {
       "Track & Field",
       "Running",
     ],
-    "Collections": [
+    Collections: [
       "Air Force ",
       "Nike Dunk",
       "Air Max",
@@ -109,7 +109,7 @@ const CatalogSidebar = () => {
           }`}
         >
           {Object.keys(sections).map((section) => (
-            <div key={section} className="border-b p-4">
+            <div key={section} className="border-b 360:p-4">
               <button
                 className="flex gap-1"
                 onClick={() => toggleSidebar(section)}
@@ -169,12 +169,14 @@ const CatalogSidebar = () => {
 
         <div className="360:hidden lg:block">
           {Object.keys(sections).map((section) => (
-            <div key={section} className="w-52">
-              <button className="w-52 pb-4 mb-4 flex justify-between border-b border-gray-400"
-                onClick={() => toggleSidebar(section)}>
-                <span className="text-sm">{section}</span>
+            <div key={section} className="w-52 xl:w-96">
+              <button
+                className="w-full pb-4 xl:pb-8 mb-4 xl:mb-8 flex justify-between border-b border-gray-400"
+                onClick={() => toggleSidebar(section)}
+              >
+                <span className="text-sm xl:text-2xl">{section}</span>
                 <svg
-                  className={`w-5 h-5 transition-transform duration-200 ${
+                  className={`w-5 h-5 xl:h-8 xl:w-8 transition-transform duration-200 ${
                     openSections[section] ? "rotate-180" : ""
                   }`}
                   fill="none"
@@ -192,16 +194,16 @@ const CatalogSidebar = () => {
               <div
                 className={`transition-all duration-200 ease-in-out overflow-hidden ${
                   openSections[section]
-                    ? "max-h-48 opacity-100"
+                    ? "max-h-96 opacity-100"
                     : "max-h-0 opacity-0"
                 }`}
               >
                 {openSections[section] && (
-                  <div className="mb-5">
+                  <div className="mb-5 xl:mb-8">
                     <ul>
                       {sections[section].map((option) => (
                         <li key={option} className="mb-3 ml-2">
-                          <label className="flex items-center text-sm">
+                          <label className="flex items-center text-sm xl:text-2xl">
                             <input
                               type="checkbox"
                               checked={
@@ -211,7 +213,7 @@ const CatalogSidebar = () => {
                               onChange={() =>
                                 handleOptionChange(section, option)
                               }
-                              className="mr-2"
+                              className="mr-2 xl:h-5 xl:w-5"
                             />
                             {option}
                           </label>

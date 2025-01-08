@@ -6,14 +6,16 @@ import { useNavigate } from 'react-router-dom'
 const Login = () => {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-  
+
     const handleSubmit = async (e) => {
       e.preventDefault();
+      setIsLoading(true);
       console.log('Logging in:', { name, password });
   
       try {
-        const response = await axios.post('http://localhost:3000/login', {
+        const response = await axios.post('http://localhost:3000/api/login', {
           name,
           password,
         });
@@ -22,13 +24,15 @@ const Login = () => {
         Cookies.set('token', jwtToken, { expires: 7 });
         console.log('Login successful, JWT Token stored in cookies:', jwtToken);
         
-        navigate('/');
+        navigate('/', { replace: true });
       } catch (error) {
         if (error.response) {
           console.error('Error during login:', error.response.data);
         } else {
           console.error('Error message:', error.message);
         }
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -70,9 +74,10 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-black text-white p-2 rounded hover:bg-gray-800"
+            disabled={isLoading}
+            className="w-full bg-black text-white p-3 rounded hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition duration-200 ease-in-out"
           >
-            Login
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
       </div>

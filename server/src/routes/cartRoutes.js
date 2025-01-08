@@ -55,7 +55,7 @@ router.post("/carts/:userId/items", authenticateToken, async (req, res) => {
   const { itemId, quantity } = req.body;
 
   try {
-    const cart = await Cart.findOne({ user: userId })
+    let cart = await Cart.findOne({ user: userId }).populate('items.itemId');
 
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
@@ -69,13 +69,58 @@ router.post("/carts/:userId/items", authenticateToken, async (req, res) => {
       cart.items[existingItemIndex].quantity += quantity;
     } else {
       cart.items.push({ itemId, quantity });
+      cart = await cart.populate('items.itemId');
     }
+
+    const totalPrice = cart.items.reduce((total, item) => {
+      const price = item.itemId && item.itemId.price ? item.itemId.price : 0;
+      return total + (price * item.quantity);
+    }, 0);
+
+    cart.totalPrice = totalPrice;
 
     await cart.save();
     res.status(200).json(cart);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error adding item to Cart" });
+  }
+});
+
+// Increment the quantity of an item in the cart
+router.patch("/carts/:userId/items/:itemId", authenticateToken, async (req, res) => {
+  const { userId, itemId } = req.params;
+  const { quantity } = req.body;
+
+  try {
+    const cart = await Cart.findOne({ user: userId }).populate('items.itemId');
+
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+    const existingItemIndex = cart.items.findIndex(
+      (item) => item.itemId.toString() === itemId
+    );
+
+    if (existingItemIndex > -1) {
+      cart.items[existingItemIndex].quantity += quantity;
+    } else {
+      return res.status(404).json({ message: "Item not found in cart" });
+    }
+
+    const totalPrice = cart.items.reduce((total, item) => {
+      const price = item.itemId && item.itemId.price ? item.itemId.price : 0;
+      return total + (price * item.quantity);
+    }, 0);
+
+    cart.totalPrice = totalPrice;
+
+    await cart.save();
+    res.status(200).json(cart);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error updating item quantity in Cart" });
   }
 });
 

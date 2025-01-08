@@ -28,7 +28,7 @@ const Cart = () => {
         }
 
         const response = await axios.get(
-          `http://localhost:3000/carts/${userId}`,
+          `http://localhost:3000/api/carts/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${authToken}`,
@@ -41,6 +41,7 @@ const Cart = () => {
         // Only update state if the component is still mounted
         if (isSubscribed) {
           setCart(response.data);
+          console.log(response.data);
           setIsLoading(false);
         }
       } catch (error) {

@@ -44,7 +44,7 @@ const ItemSchema = new mongoose.Schema({
   collections: {
       type: String,
       enum: [
-        "Air Force ",
+        "Air Force",
         "Nike Dunk",
         "Air Max",
         "Jordan Editions",
