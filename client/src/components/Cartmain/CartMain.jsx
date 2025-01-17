@@ -2,7 +2,7 @@ import "./cartMain.css";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { useParams } from "react-router"
+import { useParams } from "react-router-dom"
 
 const CartMain = ({ cart }) => {
   const { userId } = useParams();
