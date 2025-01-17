@@ -1,6 +1,5 @@
 import "./cartMain.css";
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useParams } from "react-router"
