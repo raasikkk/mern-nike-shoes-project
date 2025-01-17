@@ -88,11 +88,17 @@ router.post("/carts/:userId/items", authenticateToken, async (req, res) => {
 });
 
 // Increment the quantity of an item in the cart
-router.patch("/carts/:userId/items/:itemId", authenticateToken, async (req, res) => {
+router.post("/carts/:userId/items/:itemId", authenticateToken, async (req, res) => {
   const { userId, itemId } = req.params;
   const { quantity } = req.body;
 
   try {
+    console.log('Received request:', {
+      userId,
+      itemId,
+      quantity
+    });
+
     const cart = await Cart.findOne({ user: userId }).populate('items.itemId');
 
     if (!cart) {

@@ -69,13 +69,13 @@ const CatalogItems = () => {
                 alt={item.name}
               />
             </div>
-            <div className="mt-2 360:ml-2 lg:ml-0">
-              <h2 className="text-base font-medium xl:text-2xl">{item.name}</h2>
-              <p className="text-sm text-gray-500 xl:text-xl">Shoes</p>
-              <p className="text-sm text-gray-500 mt-1 xl:text-xl">
+            <div className="mt-2 360:ml-2 lg:ml-0 360:max-w-[49.5vw] lg:max-w-[19.5vw]">
+              <h2 className="text-base font-medium xl:text-[3vh]">{item.name}</h2>
+              <p className="text-sm text-gray-500 xl:text-[2.5vh]">Shoes</p>
+              <p className="text-sm text-gray-500 mt-1 xl:text-[2.5vh]">
                 {item.gender === 'Male' ? "Men's" : item.gender === 'Female' ? "Women's": ""}
               </p>
-              <h2 className="text-base font-medium mt-1 xl:text-2xl">${item.price}</h2>
+              <h2 className="text-base font-medium mt-1 xl:text-[2.5vh]">${item.price}</h2>
             </div>
           </button>
         </motion.div>

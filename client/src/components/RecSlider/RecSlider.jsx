@@ -99,7 +99,7 @@ const RecSlider = () => {
         damping: 25,
       }}
     >
-      <h2 className="text-2xl xl:text-5xl font-medium mb-4">
+      <h2 className="text-2xl lg:text-[4.5vh] font-medium mb-4">
         You Might Also Like
       </h2>
 
@@ -111,7 +111,7 @@ const RecSlider = () => {
           aria-label="Previous"
         >
           <svg
-            className="w-6 h-6 xl:w-12 xl:h-12"
+            className="w-6 h-6 lg:w-[4vh] lg:h-[4vh]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -131,7 +131,7 @@ const RecSlider = () => {
           aria-label="Next"
         >
           <svg
-            className="w-6 h-6 xl:w-12 xl:h-12"
+            className="w-6 h-6 xl:w-[4vh] xl:h-[4vh]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -172,10 +172,10 @@ const RecSlider = () => {
                   alt={product.name}
                   className="w-full h-auto"
                 />
-                <div className="mt-4">
-                  <h3 className="text-lg xl:text-3xl font-medium">{product.name}</h3>
-                  <p className="text-gray-600 xl:text-xl xl:mt-2">{product.category}</p>
-                  <p className="mt-2 font-medium xl:text-3xl">
+                <div className="mt-[1.5vh]">
+                  <h3 className="text-lg lg:text-[3.5vh] font-medium">{product.name}</h3>
+                  <p className="text-gray-600 lg:text-[2vh] lg:mt-[1vh]">{product.category}</p>
+                  <p className="mt-[1vh] font-medium lg:text-[3.5vh]">
                     ${product.price.toFixed(2)}
                   </p>
                 </div>

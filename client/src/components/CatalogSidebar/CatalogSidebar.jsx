@@ -169,14 +169,14 @@ const CatalogSidebar = () => {
 
         <div className="360:hidden lg:block">
           {Object.keys(sections).map((section) => (
-            <div key={section} className="w-52 xl:w-96">
+            <div key={section} className="w-52 xl:w-[20vw]">
               <button
-                className="w-full pb-4 xl:pb-8 mb-4 xl:mb-8 flex justify-between border-b border-gray-400"
+                className="w-full pb-4 xl:pb-[3vh] mb-4 xl:mb-[3vh] flex justify-between border-b border-gray-400"
                 onClick={() => toggleSidebar(section)}
               >
-                <span className="text-sm xl:text-2xl">{section}</span>
+                <span className="text-sm xl:text-[3vh]">{section}</span>
                 <svg
-                  className={`w-5 h-5 xl:h-8 xl:w-8 transition-transform duration-200 ${
+                  className={`w-5 h-5 xl:h-[3vh] xl:w-[3vh] transition-transform duration-200 ${
                     openSections[section] ? "rotate-180" : ""
                   }`}
                   fill="none"
@@ -203,7 +203,7 @@ const CatalogSidebar = () => {
                     <ul>
                       {sections[section].map((option) => (
                         <li key={option} className="mb-3 ml-2">
-                          <label className="flex items-center text-sm xl:text-2xl">
+                          <label className="flex items-center text-sm xl:text-[3vh]">
                             <input
                               type="checkbox"
                               checked={
@@ -213,7 +213,7 @@ const CatalogSidebar = () => {
                               onChange={() =>
                                 handleOptionChange(section, option)
                               }
-                              className="mr-2 xl:h-5 xl:w-5"
+                              className="mr-2 xl:h-[2.5vh] xl:w-[2.5vh]"
                             />
                             {option}
                           </label>
