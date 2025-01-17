@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing/Landing.jsx";
 import Catalog from "./pages/Catalog/Catalog.jsx";
 import Cart from "./pages/Cart/Cart.jsx";

@@ -1,5 +1,5 @@
 import "./collection.css";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Collection = () => {

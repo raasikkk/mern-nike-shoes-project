@@ -3,7 +3,7 @@ import Footer from "../../components/Footer/Footer.jsx";
 import Header from "../../components/Header/Header.jsx";
 import RecSlider from "../../components/RecSlider/RecSlider.jsx";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const Cart = () => {
